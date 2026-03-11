@@ -24,17 +24,15 @@ Cursor is an AI-powered editor. You type questions or instructions in natural la
 ### Quick Start
 
 1. Open this folder in Cursor: **File → Open Folder → select this folder**
-2. Open the terminal in Cursor (`` Ctrl+` ``) and run:
+2. Open the chat (Cmd+L), type `/start-setup`, and follow the prompts
+
+That's it! The setup command will walk you through entering credentials, installing dependencies, and building the Gong MCP server.
+
+**Alternatively**, you can run the setup script directly in the terminal:
 
 ```bash
 ./setup.sh
 ```
-
-The setup script will:
-- Create your `.env` file from the template
-- Ask for your **Gong API credentials** (Access Key + Secret)
-- Ask for your **Metabase credentials** (email + password)
-- Install dependencies and build the Gong MCP server
 
 3. Once setup completes, go to **Settings → MCP** and enable the **gong**, **metabase**, and **mixpanel** servers
 4. Restart Cursor (Cmd+Shift+P → "Reload Window")
@@ -68,11 +66,13 @@ Open Cursor's chat (Cmd+L) and type any of these:
 
 ```
 level-ai-cursor-toolkit/
-├── setup.sh                      ← Run this first!
+├── setup.sh                      ← Terminal setup (alternative)
 ├── .env.example                  ← Credential template
-├── .env                          ← Your credentials (created by setup.sh)
+├── .env                          ← Your credentials (created during setup)
 ├── .cursor/
 │   ├── mcp.json                  ← MCP server config
+│   ├── prompts/
+│   │   └── start-setup.prompt    ← /start-setup slash command
 │   ├── rules/                    ← Cursor behavior rules
 │   └── skills/                   ← Knowledge files that teach Cursor your tools
 │       ├── gong-research/        ← How to search and analyze Gong transcripts

@@ -1,0 +1,62 @@
+description: First-time setup — installs dependencies, collects credentials, and configures MCP servers
+mode: agent
+
+You are setting up the Level AI Cursor Toolkit for a first-time user. Follow these steps exactly:
+
+## Step 1 — Check prerequisites
+
+Run `node --version` in the terminal. If Node.js is not installed or is below v18, stop and tell the user to install Node.js v18+ from https://nodejs.org/ before continuing.
+
+## Step 2 — Create .env file
+
+Check if a `.env` file exists in the project root.
+- If it does NOT exist, copy `.env.example` to `.env`.
+- If it already exists, tell the user it already exists and ask if they want to overwrite it. If no, skip to Step 5.
+
+## Step 3 — Collect Gong credentials
+
+Ask the user for their Gong API credentials using structured questions:
+- **Gong Access Key** — tell them to get it from: Gong → Company Settings → API → Generate credentials
+- **Gong Access Secret** — from the same page
+
+If they don't have access, tell them to ask Shevil on Slack for temporary credentials. They can skip this step and fill it in later.
+
+## Step 4 — Collect Metabase credentials
+
+Ask the user for their Metabase credentials using structured questions:
+- **Metabase Username** (email) — the same email they use to log into Metabase
+- **Metabase Password**
+
+They can skip this step and fill it in later.
+
+## Step 5 — Write credentials
+
+Write the collected credentials to the `.env` file in this format:
+```
+# Gong API
+GONG_ACCESS_KEY=<their key>
+GONG_ACCESS_SECRET=<their secret>
+
+# Metabase
+METABASE_USERNAME=<their email>
+METABASE_PASSWORD=<their password>
+```
+
+Also update `.cursor/mcp.json` — replace the METABASE_USERNAME and METABASE_PASSWORD values in the metabase server's env block with the user's actual credentials.
+
+## Step 6 — Install and build Gong MCP server
+
+Run these commands in the terminal:
+```bash
+cd gong-mcp-server && npm install && npm run build
+```
+
+If the build fails, show the error and try to fix it.
+
+## Step 7 — Done!
+
+Tell the user setup is complete and they need to do two things:
+1. Go to **Cursor Settings → MCP** and enable (toggle on) the **gong**, **metabase**, and **mixpanel** servers
+2. Restart Cursor: **Cmd+Shift+P → "Reload Window"**
+
+Once they see green dots next to each MCP server, they're ready to go. Suggest they try a sample query like: "What are customers saying about automated QA?"
