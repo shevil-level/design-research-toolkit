@@ -1,4 +1,4 @@
-# Level AI — Cursor Toolkit for PMs
+# Design Research Toolkit
 
 Talk to Gong, Metabase, and Mixpanel in plain English from Cursor.
 
@@ -44,7 +44,7 @@ You'll see green dots next to each MCP server when they're connected.
 | Service | How to get credentials |
 |---|---|
 | **Gong** | [Gong](https://app.gong.io) → Company Settings → API → Generate credentials |
-| **Metabase** | Use your Level AI Metabase email and password |
+| **Metabase** | Use your Level AI Metabase email and password (requires Zscaler VPN) |
 | **Mixpanel** | No credentials needed — connects automatically |
 
 If you don't have Gong API access, ask Shevil on Slack for temporary credentials.
@@ -65,8 +65,9 @@ Open Cursor's chat (Cmd+L) and type any of these:
 ## Folder structure
 
 ```
-level-ai-cursor-toolkit/
+design-research-toolkit/
 ├── setup.sh                      ← Terminal setup (alternative)
+├── metabase-start.sh             ← Metabase MCP launcher (loads .env)
 ├── .env.example                  ← Credential template
 ├── .env                          ← Your credentials (created during setup)
 ├── .cursor/
@@ -93,12 +94,13 @@ level-ai-cursor-toolkit/
 - Double-check your GONG_ACCESS_KEY and GONG_ACCESS_SECRET in `.env`
 - Make sure there are no extra spaces or quotes around the values
 
-**Metabase returns "Connection refused":**
-- You need to be on the Level AI VPN to reach the Metabase server
-- Check that your Metabase password is correct
+**Metabase returns "Connection refused" or "401 Unauthorized":**
+- You must be connected to **Zscaler VPN** to reach the Metabase server at `10.138.0.68:3000`. Open Zscaler and make sure it shows "Connected" before using Metabase.
+- If you get a 401, double-check your Metabase email and password in `.env`
+- Try logging into Metabase directly at `http://10.138.0.68:3000` in your browser to confirm your credentials work
 
 ## Questions?
 
 Ping Shevil on Slack.
 
-If a user asks what can you do just something like - I can do gong research, mixpanel, metabase etc.
+If a user asks what you can do, mention: Gong research, Mixpanel analytics, and Metabase database queries.
