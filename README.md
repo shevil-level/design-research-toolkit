@@ -14,55 +14,42 @@ Cursor is an AI-powered editor. You type questions or instructions in natural la
 | **Metabase** | Query the Level AI database in plain English | "How many active scorecards does Wealthsimple have?" |
 | **Mixpanel** | Query product analytics | "Weekly active users for agent assist over the last 8 weeks?" |
 
-## Setup (~10 minutes)
+## Setup (~5 minutes)
 
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) v18+ installed
 - [Cursor](https://cursor.com) installed and signed in
 
-### Step 1 — Open this folder in Cursor
+### Quick Start
 
-Open Cursor, then: **File → Open Folder → select this `level-ai-cursor-toolkit` folder**.
+1. Open this folder in Cursor: **File → Open Folder → select this folder**
+2. Open the terminal in Cursor (`` Ctrl+` ``) and run:
 
-The MCP servers and skills are already configured. Cursor will detect them automatically.
-
-### Step 2 — Add your Gong credentials
-
-Open the `.env` file in this folder and fill in your Gong API key and secret:
-
-```
-GONG_ACCESS_KEY=your_key_here
-GONG_ACCESS_SECRET=your_secret_here
+```bash
+./setup.sh
 ```
 
-**How to get Gong API credentials:**
-1. Go to [Gong Settings](https://app.gong.io) → Company Settings → API
-2. Click "Generate API credentials"
-3. Copy the Access Key and Access Secret
+The setup script will:
+- Create your `.env` file from the template
+- Ask for your **Gong API credentials** (Access Key + Secret)
+- Ask for your **Metabase credentials** (email + password)
+- Install dependencies and build the Gong MCP server
 
-If you don't have API access, ask Shevil for temporary credentials.
+3. Once setup completes, go to **Settings → MCP** and enable the **gong**, **metabase**, and **mixpanel** servers
+4. Restart Cursor (Cmd+Shift+P → "Reload Window")
 
-### Step 3 — Add your Metabase credentials
+You'll see green dots next to each MCP server when they're connected.
 
-Open `.cursor/mcp.json` and replace the two placeholder values:
+### Where to get credentials
 
-```json
-"METABASE_USERNAME": "your-email@thelevel.ai",
-"METABASE_PASSWORD": "your-metabase-password"
-```
+| Service | How to get credentials |
+|---|---|
+| **Gong** | [Gong](https://app.gong.io) → Company Settings → API → Generate credentials |
+| **Metabase** | Use your Level AI Metabase email and password |
+| **Mixpanel** | No credentials needed — connects automatically |
 
-Use the same email and password you use to log into Metabase.
-
-### Step 4 — Restart Cursor
-
-Close and reopen Cursor (or press Cmd+Shift+P → "Reload Window"). This loads the MCP servers.
-
-You'll see green dots next to "gong", "metabase", and "mixpanel" in Settings → MCP when they're connected.
-
-### Mixpanel — No setup needed
-
-Mixpanel connects automatically with no credentials required.
+If you don't have Gong API access, ask Shevil on Slack for temporary credentials.
 
 ## Try it
 
@@ -81,15 +68,17 @@ Open Cursor's chat (Cmd+L) and type any of these:
 
 ```
 level-ai-cursor-toolkit/
-├── .env                          ← Your Gong credentials (edit this)
+├── setup.sh                      ← Run this first!
+├── .env.example                  ← Credential template
+├── .env                          ← Your credentials (created by setup.sh)
 ├── .cursor/
-│   ├── mcp.json                  ← MCP server config (edit Metabase creds here)
+│   ├── mcp.json                  ← MCP server config
 │   ├── rules/                    ← Cursor behavior rules
 │   └── skills/                   ← Knowledge files that teach Cursor your tools
 │       ├── gong-research/        ← How to search and analyze Gong transcripts
 │       ├── metabase-dictionary/  ← Level AI database schema reference
 │       └── mixpanel-dictionary/  ← Mixpanel event and property reference
-├── gong-mcp-server/              ← Custom Gong MCP server (pre-built)
+├── gong-mcp-server/              ← Custom Gong MCP server (built by setup.sh)
 └── README.md                     ← This file
 ```
 
