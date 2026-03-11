@@ -1,0 +1,15 @@
+# Secrets
+.env
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# OS
+.DS_Store
+
+# Editor
+*.swp
+*.swo

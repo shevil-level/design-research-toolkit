@@ -1,0 +1,34 @@
+{
+  "result": {
+    "properties": [
+      "$last_seen",
+      "$browser",
+      "$browser_version",
+      "$email",
+      "$name",
+      "$os",
+      "Name",
+      "email",
+      "tenant",
+      "userType",
+      "$city",
+      "$country_code",
+      "$region",
+      "$timezone",
+      "$initial_referrer",
+      "$initial_referring_domain",
+      "userId",
+      "isFirstTimeUser",
+      "initial_utm_campaign",
+      "initial_utm_content",
+      "initial_utm_medium",
+      "initial_utm_source",
+      "initial_utm_term",
+      "initial_utm_campaign_id",
+      "initial_utm_creative_format",
+      "initial_utm_id",
+      "initial_utm_marketing_tactic",
+      "initial_utm_source_platform"
+    ]
+  }
+}

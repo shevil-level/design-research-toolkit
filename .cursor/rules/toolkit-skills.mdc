@@ -1,0 +1,24 @@
+---
+description: Level AI PM Toolkit — skill awareness
+globs: "**/*"
+---
+
+# Level AI PM Toolkit
+
+This workspace has three skills that help PMs query internal data tools without writing code.
+
+## Available Skills
+
+| Skill | Location | When to Use |
+|---|---|---|
+| **Gong Research** | `.cursor/skills/gong-research/SKILL.md` | When the user asks about customer conversations, call transcripts, or wants to research what customers are saying about a topic |
+| **Metabase Dictionary** | `.cursor/skills/metabase-dictionary/SKILL.md` | Before writing any SQL query against Metabase — translates product concepts to database tables |
+| **Mixpanel Dictionary** | `.cursor/skills/mixpanel-dictionary/SKILL.md` | Before calling any Mixpanel MCP tool — translates product concepts to event names |
+
+## Behavior
+
+- When a task matches a skill, read the SKILL.md first and follow its instructions.
+- Always read the relevant reference files before writing queries or making MCP tool calls.
+- For Metabase queries, check the database index, domain files, and query patterns.
+- For Mixpanel queries, check events.md, properties.md, and query-recipes.md.
+- For Gong research, follow the phased workflow in the skill file.

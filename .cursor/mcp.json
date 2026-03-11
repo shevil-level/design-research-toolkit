@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "gong": {
+      "command": "bash",
+      "args": ["gong-mcp-server/start.sh"]
+    },
+    "metabase": {
+      "command": "npx",
+      "args": ["-y", "@cognitionai/metabase-mcp-server"],
+      "env": {
+        "METABASE_URL": "http://10.138.0.68:3000",
+        "METABASE_USERNAME": "REPLACE_WITH_YOUR_EMAIL@thelevel.ai",
+        "METABASE_PASSWORD": "REPLACE_WITH_YOUR_METABASE_PASSWORD"
+      }
+    },
+    "mixpanel": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.mixpanel.com/mcp",
+        "--allow-http"
+      ]
+    }
+  }
+}
